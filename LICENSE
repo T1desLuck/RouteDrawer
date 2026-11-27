@@ -37,9 +37,11 @@ convenience; in case of discrepancies the Russian text prevails.
 1. ОПРЕДЕЛЕНИЯ
 
 1.1. «Программа» — скрипт RouteDrawer.jsx, установщик RouteDrawer-Setup.exe,
-     а также иконки, графика, тексты и документация (включая README), размещённые
-     в репозитории https://github.com/T1desLuck/RouteDrawer, любые их части
-     и копии.
+     сайт проекта (папка docs), а также иконки, графика, тексты и документация
+     (включая README), размещённые в репозитории
+     https://github.com/T1desLuck/RouteDrawer, любые их части и копии.
+     Шрифт Fira Sans, входящий в состав сайта, не является частью Программы
+     и распространяется на условиях SIL Open Font License 1.1.
 1.2. «Автор» — tidesluck@icloud.com. «Правообладатель» — ИП Барков Никита
      Сергеевич.
 1.3. «Вы» — любое лицо, которое получает или использует Программу.
@@ -199,9 +201,11 @@ IN SHORT (does not replace the license text below)
 1. DEFINITIONS
 
 1.1. "Software" means the script RouteDrawer.jsx, the installer
-     RouteDrawer-Setup.exe, and the icons, graphics, texts and documentation
-     (including the README) published in the repository
-     https://github.com/T1desLuck/RouteDrawer, and any parts and copies of them.
+     RouteDrawer-Setup.exe, the project website (the docs folder), and the
+     icons, graphics, texts and documentation (including the README) published
+     in the repository https://github.com/T1desLuck/RouteDrawer, and any parts
+     and copies of them. The Fira Sans font bundled with the website is not
+     part of the Software and is distributed under the SIL Open Font License 1.1.
 1.2. "Author" means tidesluck@icloud.com. "Rights holder" means
      ИП Барков Никита Сергеевич (individual entrepreneur).
 1.3. "You" means anyone who receives or uses the Software.

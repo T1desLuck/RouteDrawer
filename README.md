@@ -13,8 +13,9 @@
 ![installer](https://img.shields.io/badge/installer-Windows-2680EB?style=for-the-badge&labelColor=1E1E1E)
 ![language](https://img.shields.io/badge/language-RU%20%7C%20EN-2680EB?style=for-the-badge&labelColor=1E1E1E)
 ![license](https://img.shields.io/badge/license-RDL%201.0-2680EB?style=for-the-badge&labelColor=1E1E1E)
+[![website](https://img.shields.io/badge/website-t1desluck.github.io%2FRouteDrawer-2680EB?style=for-the-badge&labelColor=1E1E1E)](https://t1desluck.github.io/RouteDrawer/)
 
-[Скачать](#скачать) · [Установка](#установка) · [Как пользоваться](#как-пользоваться) · [Настройки](#настройки) · [Как это работает](#как-это-работает) · [Частые вопросы](#частые-вопросы) · [Лицензия](#лицензия)
+[Сайт](https://t1desluck.github.io/RouteDrawer/) · [Скачать](#скачать) · [Установка](#установка) · [Как пользоваться](#как-пользоваться) · [Настройки](#настройки) · [Как это работает](#как-это-работает) · [Частые вопросы](#частые-вопросы) · [Лицензия](#лицензия)
 
 </div>
 
@@ -365,8 +366,14 @@ RouteDrawer/
 ├── RouteDrawer-Setup.exe    установщик для Windows (RU / EN)
 ├── README.md                этот файл
 ├── LICENSE                  лицензия Route Drawer (RDL) 1.0
-└── docs/images/             картинки для README
+└── docs/
+    ├── index.html           сайт проекта (GitHub Pages), русский и английский
+    ├── 404.html, robots.txt, sitemap.xml, site.webmanifest, favicon.*   служебные файлы сайта
+    ├── assets/              стили, скрипты, шрифты и картинки сайта
+    └── images/              картинки для README
 ```
+
+Сайт проекта — [t1desluck.github.io/RouteDrawer](https://t1desluck.github.io/RouteDrawer/): тёмная страница в стиле установщика с демо в браузере, где можно поставить точки по карте и увидеть работу алгоритма. Язык выбирается по языку системы или браузера (переключатель РУС / ENG в шапке), внешних запросов и трекеров нет. Шрифт Fira Sans на сайте распространяется на условиях SIL Open Font License 1.1 (`docs/assets/fonts/OFL.txt`).
 
 <br>
 

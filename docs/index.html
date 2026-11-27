@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Route Drawer — маршрут по контуру для Photoshop: скрипт и установщик</title>
+<meta name="description" content="Бесплатный скрипт для Photoshop: точки Пером по дорогам — и готова красная линия маршрута со стрелками. Установщик для Windows, русский и английский языки.">
+<link rel="canonical" href="https://t1desluck.github.io/RouteDrawer/">
+<link rel="alternate" hreflang="ru" href="https://t1desluck.github.io/RouteDrawer/">
+<link rel="alternate" hreflang="en" href="https://t1desluck.github.io/RouteDrawer/?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://t1desluck.github.io/RouteDrawer/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#1a1a1b">
+<meta name="color-scheme" content="dark">
+<meta name="author" content="tidesluck@icloud.com">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Route Drawer">
+<meta property="og:title" content="Route Drawer — маршрут по контуру для Photoshop: скрипт и установщик">
+<meta property="og:description" content="Бесплатный скрипт для Photoshop: точки Пером по дорогам — и готова красная линия маршрута со стрелками. Установщик для Windows, русский и английский языки.">
+<meta property="og:url" content="https://t1desluck.github.io/RouteDrawer/">
+<meta property="og:image" content="https://t1desluck.github.io/RouteDrawer/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Route Drawer: красная линия маршрута со стрелками на карте">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Route Drawer — маршрут по контуру для Photoshop: скрипт и установщик">
+<meta name="twitter:description" content="Бесплатный скрипт для Photoshop: точки Пером по дорогам — и готова красная линия маршрута со стрелками. Установщик для Windows, русский и английский языки.">
+<meta name="twitter:image" content="https://t1desluck.github.io/RouteDrawer/assets/og.png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<script>
+/* Язык: ?lang=ru|en → сохранённый выбор → язык браузера/ОС (русский, украинский, белорусский, казахский, киргизский — русский; остальные — английский).
+   Поисковым роботам всегда отдаётся русский (основной язык сайта); оба языка при этом присутствуют в разметке. */
+(function () {
+  var l, m;
+  try { m = location.search.match(/[?&]lang=(ru|en)\b/); if (m) l = m[1]; else l = localStorage.getItem('rd-lang'); } catch (e) {}
+  if (l !== 'ru' && l !== 'en') {
+    var n = (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
+    n = String(n).toLowerCase().slice(0, 2);
+    l = (n === 'ru' || n === 'uk' || n === 'be' || n === 'kk' || n === 'ky') ? 'ru' : 'en';
+    if (/bot|crawl|spider|slurp|yandex|bing|facebookexternalhit|telegram|whatsapp|preview/i.test(navigator.userAgent || '')) l = 'ru';
+  }
+  document.documentElement.setAttribute('lang', l);
+})();
+</script>
+<link rel="preload" href="assets/fonts/FiraSans-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/FiraSans-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Route Drawer", "alternateName": "RouteDrawer", "applicationCategory": "MultimediaApplication", "applicationSubCategory": "Photoshop script", "operatingSystem": "Windows 10, Windows 11", "softwareVersion": "1.0.0", "softwareRequirements": "Adobe Photoshop 2019 or later", "description": "Photoshop script that draws a smooth red route line with direction arrows along a Pen tool path. Includes a Windows installer (Russian and English).", "url": "https://t1desluck.github.io/RouteDrawer/", "downloadUrl": "https://github.com/T1desLuck/RouteDrawer/raw/main/RouteDrawer-Setup.exe", "fileSize": "223 KB", "inLanguage": ["ru", "en"], "image": "https://t1desluck.github.io/RouteDrawer/assets/og.png", "license": "https://github.com/T1desLuck/RouteDrawer/blob/main/LICENSE", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "author": {"@type": "Organization", "name": "ИП Барков Никита Сергеевич", "email": "tidesluck@icloud.com"}}</script>
+</head>
+<body>
+<a class="skip" href="#main"><span lang="ru">Перейти к содержимому</span><span lang="en">Skip to content</span></a>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="#top" aria-label="Route Drawer"><img src="assets/icon-192.png" width="30" height="30" alt="">Route Drawer</a>
+    <nav class="nav" aria-label="Разделы" data-ru-aria-label="Разделы" data-en-aria-label="Sections" data-i18n="aria-label">
+      <a href="#features"><span lang="ru">Возможности</span><span lang="en">Features</span></a>
+      <a href="#how"><span lang="ru">Как пользоваться</span><span lang="en">How to use</span></a>
+      <a href="#engine"><span lang="ru">Как работает</span><span lang="en">How it works</span></a>
+      <a href="#install"><span lang="ru">Установка</span><span lang="en">Install</span></a>
+      <a href="#faq"><span lang="ru">Вопросы</span><span lang="en">FAQ</span></a>
+    </nav>
+    <span class="top-sp"></span>
+    <div class="lang" role="group" aria-label="Language / Язык">
+      <button type="button" data-l="ru" aria-pressed="true">РУС</button>
+      <button type="button" data-l="en" aria-pressed="false">ENG</button>
+    </div>
+    <a class="icon-btn" href="https://github.com/T1desLuck/RouteDrawer" aria-label="GitHub" title="GitHub"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" ><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 015.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0023.5 12C23.5 5.65 18.35.5 12 .5z"/></svg></a>
+    <a class="btn btn-primary btn-sm" href="https://github.com/T1desLuck/RouteDrawer/raw/main/RouteDrawer-Setup.exe"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg><span lang="ru">Скачать</span><span lang="en">Download</span></a>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <h1><span lang="ru">Маршрут на карте — одним запуском скрипта</span><span lang="en">A route on the map in one script run</span></h1>
+      <div>
+        <p class="lead"><span lang="ru">Ставьте точки Пером по дорогам — скрипт для Photoshop проведёт по ним гладкую красную линию со стрелками направления. Для схем проезда, учебных маршрутов автошкол, экскурсий и доставки.</span><span lang="en">Click points along the roads with the Pen tool, and the Photoshop script draws a smooth red route line with direction arrows. Made for driving routes, learner-driver maps, tours and deliveries.</span></p>
+        <div class="cta">
+          <a class="btn btn-primary btn-lg" href="https://github.com/T1desLuck/RouteDrawer/raw/main/RouteDrawer-Setup.exe"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg><span lang="ru">Скачать установщик</span><span lang="en">Download installer</span></a>
+          <a class="btn btn-ghost btn-lg" href="https://github.com/T1desLuck/RouteDrawer/raw/main/RouteDrawer.jsx"><span lang="ru">Только скрипт</span><span lang="en">Script only</span></a>
+        </div>
+        <ul class="facts">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span lang="ru">Windows 10 и 11, 223 КБ</span><span lang="en">Windows 10 and 11, 223 KB</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span lang="ru">Photoshop 2019 и новее</span><span lang="en">Photoshop 2019 and newer</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span lang="ru">Бесплатно, без трекеров</span><span lang="en">Free, no trackers</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="demo" aria-label="Демо" data-ru-aria-label="Демо" data-en-aria-label="Demo" data-i18n="aria-label">
+  <div class="wrap">
+    <div class="ps" id="demo">
+      <div class="ps-tabs"><span class="ps-tab"><span lang="ru">карта-маршрута.psd @ 100% (RGB/8)</span><span lang="en">route-map.psd @ 100% (RGB/8)</span> <i aria-hidden="true">×</i></span></div>
+      <div class="ps-opts"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M4 20l1.2-5L15.5 4.7a2 2 0 012.8 0l1 1a2 2 0 010 2.8L9 18.8z"/><path d="M13.5 6.7l3.8 3.8M4 20l5-2"/></svg><span class="ps-chip"><span lang="ru">Контур</span><span lang="en">Path</span></span><span class="hint"><span lang="ru">Кликайте по дороге от начала маршрута до конца</span><span lang="en">Click along the road from the start to the end of the route</span></span></div>
+      <div class="ps-body">
+        <div class="ps-tools" aria-hidden="true">
+          <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M12 3v18M3 12h18M12 3l-3 3M12 3l3 3M12 21l-3-3M12 21l3-3M3 12l3-3M3 12l3 3M21 12l-3-3M21 12l-3 3"/></svg></span><span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect x="4" y="5" width="16" height="14" rx="1" stroke-dasharray="3 3"/></svg></span><hr><span class="on"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M4 20l1.2-5L15.5 4.7a2 2 0 012.8 0l1 1a2 2 0 010 2.8L9 18.8z"/><path d="M13.5 6.7l3.8 3.8M4 20l5-2"/></svg></span><span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M6 6h12M12 6v13M9 19h6"/></svg></span>
+        </div>
+        <div class="ps-stage">
+          <div class="ruler ruler-c"></div><div class="ruler ruler-x"></div><div class="ruler ruler-y"></div>
+          <div class="ps-canvas-wrap">
+            <canvas id="demo-canvas" width="1000" height="620" tabindex="0" role="img" aria-label="Карта. Кликайте по дорогам, чтобы поставить точки контура." data-ru-aria-label="Карта. Кликайте по дорогам, чтобы поставить точки контура." data-en-aria-label="Map. Click along the roads to place path points." data-i18n="aria-label"></canvas>
+            <div class="ps-hint" id="demo-hint"><span lang="ru">Кликайте по дорогам, чтобы поставить точки</span><span lang="en">Click along the roads to place points</span></div>
+          </div>
+        </div>
+        <aside class="ps-dock">
+          <section class="dp">
+            <h3 class="dp-h"><span lang="ru">Слои</span><span lang="en">Layers</span></h3>
+            <ul class="layers">
+              <li class="layer" data-layer="arrows" hidden>
+                <button class="eye" type="button" aria-pressed="true" aria-label="Показать или скрыть слой" data-ru-aria-label="Показать или скрыть слой" data-en-aria-label="Show or hide layer" data-i18n="aria-label"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M2 12s3.8-6.5 10-6.5S22 12 22 12s-3.8 6.5-10 6.5S2 12 2 12z"/><circle class="pupil" cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"/></svg></button>
+                <span class="thumb"><svg viewBox="0 0 28 28" aria-hidden="true" focusable="false"><path d="M6 21l3-8 3 8-3-2zM17 11l7 3-7 3 2-3z" fill="#e5191c" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg></span><span class="lname">Маршрут — стрелки<small lang="en">(arrows)</small></span>
+              </li>
+              <li class="layer" data-layer="line" hidden>
+                <button class="eye" type="button" aria-pressed="true" aria-label="Показать или скрыть слой" data-ru-aria-label="Показать или скрыть слой" data-en-aria-label="Show or hide layer" data-i18n="aria-label"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M2 12s3.8-6.5 10-6.5S22 12 22 12s-3.8 6.5-10 6.5S2 12 2 12z"/><circle class="pupil" cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"/></svg></button>
+                <span class="thumb"><svg viewBox="0 0 28 28" aria-hidden="true" focusable="false"><path d="M5 22V15h8V8h10" fill="none" stroke="#e5191c" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="lname">Маршрут — линия<small lang="en">(line)</small></span>
+              </li>
+              <li class="layer sel" data-layer="bg">
+                <button class="eye" type="button" aria-pressed="true" aria-label="Показать или скрыть слой" data-ru-aria-label="Показать или скрыть слой" data-en-aria-label="Show or hide layer" data-i18n="aria-label"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M2 12s3.8-6.5 10-6.5S22 12 22 12s-3.8 6.5-10 6.5S2 12 2 12z"/><circle class="pupil" cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"/></svg></button>
+                <span class="thumb map"></span><span class="lname"><span lang="ru">Фон</span><span lang="en">Background</span></span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="lock"><rect x="6" y="11" width="12" height="9" rx="2"/><path d="M9 11V8a3 3 0 016 0v3"/></svg>
+              </li>
+            </ul>
+          </section>
+          <section class="dp">
+            <h3 class="dp-h"><span lang="ru">Маршрут по контуру</span><span lang="en">Route from path</span></h3>
+            <div class="dlg">
+              <div class="fld"><span class="lbl"><span lang="ru">Цвет линии</span><span lang="en">Line colour</span></span><span></span>
+                <div class="swatches" role="group" aria-label="Цвет линии" data-ru-aria-label="Цвет линии" data-en-aria-label="Line colour" data-i18n="aria-label">
+                  <button class="sw" type="button" style="--c:#e5191c" data-c="#E5191C" aria-pressed="true" aria-label="#E5191C"></button>
+                  <button class="sw" type="button" style="--c:#ff7a1a" data-c="#FF7A1A" aria-pressed="false" aria-label="#FF7A1A"></button>
+                  <button class="sw" type="button" style="--c:#19b36b" data-c="#19B36B" aria-pressed="false" aria-label="#19B36B"></button>
+                  <button class="sw" type="button" style="--c:#b36bff" data-c="#B36BFF" aria-pressed="false" aria-label="#B36BFF"></button>
+                  <button class="sw" type="button" style="--c:#ffd21f" data-c="#FFD21F" aria-pressed="false" aria-label="#FFD21F"></button>
+                </div>
+              </div>
+              <div class="fld"><label for="f-w"><span lang="ru">Толщина линии, px</span><span lang="en">Line thickness, px</span></label><output id="f-w-v" for="f-w"></output><input class="rng" id="f-w" type="range" min="2" max="12" step="0.5"></div>
+              <div class="fld"><label for="f-s"><span lang="ru">Сглаживание, px</span><span lang="en">Smoothing, px</span></label><output id="f-s-v" for="f-s"></output><input class="rng" id="f-s" type="range" min="0" max="24" step="1"></div>
+              <div class="fld"><label for="f-c"><span lang="ru">Скругление углов, px</span><span lang="en">Corner rounding, px</span></label><output id="f-c-v" for="f-c"></output><input class="rng" id="f-c" type="range" min="0" max="12" step="0.5"></div>
+              <div class="fld"><label for="f-a"><span lang="ru">Размер стрелки, px</span><span lang="en">Arrow size, px</span></label><output id="f-a-v" for="f-a"></output><input class="rng" id="f-a" type="range" min="10" max="30" step="1"></div>
+              <label class="chk"><input type="checkbox" id="f-arrows" checked><span lang="ru">Стрелки направления</span><span lang="en">Direction arrows</span></label>
+              <label class="chk"><input type="checkbox" id="f-outline" checked><span lang="ru">Белая обводка у стрелок</span><span lang="en">White arrow outline</span></label>
+              <div class="dlg-btns">
+                <button class="btn btn-primary" type="button" data-a="draw" disabled><span lang="ru">Нарисовать</span><span lang="en">Draw</span></button>
+                <button class="linkbtn" type="button" data-a="undo" disabled><span lang="ru">Отменить</span><span lang="en">Undo</span></button>
+                <button class="linkbtn" type="button" data-a="clear" disabled><span lang="ru">Очистить</span><span lang="en">Clear</span></button>
+                <button class="linkbtn" type="button" data-a="example"><span lang="ru">Пример</span><span lang="en">Example</span></button>
+              </div>
+            </div>
+          </section>
+        </aside>
+      </div>
+      <div class="ps-status"><span>100%</span><span id="demo-count"></span><span class="grow"></span><span><span lang="ru">Рабочий контур</span><span lang="en">Work path</span></span></div>
+      <div class="sr" id="demo-live" aria-live="polite"></div>
+    </div>
+    <p class="demo-cap"><span lang="ru">Это рабочее демо: сглаживание, линия и стрелки считаются тем же кодом, что и в скрипте. Поставьте точки по дорогам и нажмите «Нарисовать» — потом можно двигать ползунки и добавлять точки.</span><span lang="en">This is a working demo: smoothing, line and arrows are computed by the same code as in the script. Place points along the roads and press “Draw” — then move the sliders or add more points.</span></p>
+  </div>
+</section>
+
+<section class="sec" id="features">
+  <div class="wrap feat-grid">
+    <div class="sec-head">
+      <h2><span lang="ru">Что умеет скрипт</span><span lang="en">What the script does</span></h2>
+      <p class="sub"><span lang="ru">Он делает одно: превращает контур из «Пера» в аккуратный маршрут. Всё остальное — настройки.</span><span lang="en">It does one thing: turns a Pen path into a tidy route. Everything else is a setting.</span></p>
+    </div>
+    <ul class="rows">
+      <li><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><circle cx="6" cy="18" r="2.2"/><path d="M6 15.8V12a3 3 0 013-3h6a3 3 0 003-3V5"/><path d="M15.5 6.5L18 4l2.5 2.5"/></svg></span><h3><span lang="ru">Одна непрерывная линия</span><span lang="en">One continuous line</span></h3><p><span lang="ru">От первой точки до последней, без разрывов. Контур может состоять из нескольких кусков — каждый получит свои стрелки.</span><span lang="en">From the first point to the last, with no gaps. A path can have several pieces, and each one gets its own arrows.</span></p></li>
+      <li><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M3 17c4.5 0 4-10 9-10s4.5 10 9 10"/><circle cx="3" cy="17" r="1" fill="currentColor"/><circle cx="21" cy="17" r="1" fill="currentColor"/></svg></span><h3><span lang="ru">Сглаживание, которое понимает дорогу</span><span lang="en">Smoothing that understands roads</span></h3><p><span lang="ru">Плавные изгибы получаются гладкими, а повороты на перекрёстках остаются чёткими. Тянуть «усы» у точек не нужно.</span><span lang="en">Gentle bends come out smooth while turns at junctions stay crisp. You never have to drag Pen handles.</span></p></li>
+      <li><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M4 12h14M13 6.5l5.5 5.5-5.5 5.5"/></svg></span><h3><span lang="ru">Стрелки без мусора</span><span lang="en">Arrows without clutter</span></h3><p><span lang="ru">В начале маршрута, после поворотов и изредка на длинных прямых. Белая обводка не даёт им потеряться на линии.</span><span lang="en">At the start, after turns and occasionally on long straights. A white outline keeps them readable on the line.</span></p></li>
+      <li><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg></span><h3><span lang="ru">Настройки, которые запоминаются</span><span lang="en">Settings that are remembered</span></h3><p><span lang="ru">Цвет, толщина, сглаживание, размер и частота стрелок. Размеры подстраиваются под размер картинки, так что скриншот любого размера выглядит одинаково.</span><span lang="en">Colour, thickness, smoothing, arrow size and spacing. Sizes scale with the image, so a screenshot of any size looks the same.</span></p></li>
+      <li><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M13 3L5 13.5h6L10 21l8-10.5h-6z"/></svg></span><h3><span lang="ru">Не вешает Photoshop</span><span lang="en">Never freezes Photoshop</span></h3><p><span lang="ru">Без кисти и сотен мазков: геометрия считается в памяти и заливается несколькими крупными операциями.</span><span lang="en">No brush and no hundreds of strokes: the geometry is computed in memory and filled in a few large operations.</span></p></li>
+      <li><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M9 7L4.5 11.5 9 16"/><path d="M5 11.5h8.5a5 5 0 010 10H9" transform="translate(0 -2.5)"/></svg></span><h3><span lang="ru">Откат одним шагом</span><span lang="en">One-step undo</span></h3><p><span lang="ru">Результат — два обычных слоя, ваш контур не меняется. Ctrl+Z отменяет всю отрисовку целиком.</span><span lang="en">You get two ordinary layers and your path stays as it was. Ctrl+Z undoes the whole drawing at once.</span></p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2><span lang="ru">Как пользоваться</span><span lang="en">How to use</span></h2>
+      <p class="sub"><span lang="ru">Три действия: точки, запуск, результат. Скриншот карты — Яндекс, Google или любой другой.</span><span lang="en">Three actions: points, run, result. Any map screenshot works — Yandex, Google or anything else.</span></p>
+    </div>
+    <ol class="steps">
+      <li class="step">
+        <div class="step-vis"><canvas data-scene="points" role="img" aria-label="Точки контура на карте" data-ru-aria-label="Точки контура на карте" data-en-aria-label="Path points on the map" data-i18n="aria-label"></canvas></div>
+        <h3><span lang="ru">Поставьте точки Пером</span><span lang="en">Place points with the Pen</span></h3>
+        <p><span lang="ru">Откройте карту в Photoshop, возьмите Перо (<kbd>P</kbd>) в режиме «Контур» и кликайте по дороге от начала маршрута до конца. Тянуть мышью не нужно: на повороте хватит одной точки.</span><span lang="en">Open the map in Photoshop, pick the Pen (<kbd>P</kbd>) in Path mode and click along the road from the start to the end. No dragging: one point per turn is enough.</span></p>
+      </li>
+      <li class="step">
+        <div class="step-vis"><div class="mini-dlg"><div class="box">
+          <div class="tt"><span lang="ru">Маршрут по контуру</span><span lang="en">Route from path</span></div>
+          <div class="bd">
+            <div class="grp"><span lang="ru">Линия</span><span lang="en">Line</span></div>
+            <div class="r"><span><span lang="ru">Цвет линии (HEX)</span><span lang="en">Line colour (HEX)</span></span><i>E5191C</i></div>
+            <div class="r"><span><span lang="ru">Толщина линии, px</span><span lang="en">Line thickness, px</span></span><i>4</i></div>
+            <div class="r"><span><span lang="ru">Сглаживание плавных поворотов, px</span><span lang="en">Smoothing of gentle bends, px</span></span><i>2,5</i></div>
+            <div class="grp"><span lang="ru">Стрелки</span><span lang="en">Arrows</span></div>
+            <div class="r"><span><span lang="ru">Рисовать стрелки направления</span><span lang="en">Draw direction arrows</span></span><i>✓</i></div>
+            <div class="r"><span><span lang="ru">Размер стрелки, px</span><span lang="en">Arrow size, px</span></span><i>14</i></div>
+            <span class="go"><span lang="ru">Нарисовать</span><span lang="en">Draw</span></span>
+          </div>
+        </div></div></div>
+        <h3><span lang="ru">Запустите скрипт</span><span lang="en">Run the script</span></h3>
+        <p><span lang="ru"><b>Файл → Сценарии → RouteDrawer.</b> Проверьте настройки и нажмите «Нарисовать». Окно скрипта пока только на русском; настройки запоминаются.</span><span lang="en"><b>File → Scripts → RouteDrawer.</b> Check the settings and press “Нарисовать” (Draw). The script window is Russian only for now; your settings are remembered.</span></p>
+      </li>
+      <li class="step">
+        <div class="step-vis"><canvas data-scene="final" role="img" aria-label="Готовый маршрут со стрелками" data-ru-aria-label="Готовый маршрут со стрелками" data-en-aria-label="Finished route with arrows" data-i18n="aria-label"></canvas>
+          <div class="vis-layers"><ul class="layers" style="padding:0;margin:0">
+            <li class="layer sel"><span class="thumb"><svg viewBox="0 0 28 28" aria-hidden="true" focusable="false"><path d="M6 21l3-8 3 8-3-2zM17 11l7 3-7 3 2-3z" fill="#e5191c" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg></span><span class="lname">Маршрут — стрелки</span></li>
+            <li class="layer"><span class="thumb"><svg viewBox="0 0 28 28" aria-hidden="true" focusable="false"><path d="M5 22V15h8V8h10" fill="none" stroke="#e5191c" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="lname">Маршрут — линия</span></li>
+          </ul></div>
+        </div>
+        <h3><span lang="ru">Получите два слоя</span><span lang="en">Get two layers</span></h3>
+        <p><span lang="ru">«Маршрут — линия» и «Маршрут — стрелки». Контур остаётся нетронутым, а <kbd>Ctrl</kbd>+<kbd>Z</kbd> откатывает всё одним шагом.</span><span lang="en">“Маршрут — линия” (route line) and “Маршрут — стрелки” (arrows). Your path stays untouched and <kbd>Ctrl</kbd>+<kbd>Z</kbd> undoes everything in one step.</span></p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="engine">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2><span lang="ru">Как работает</span><span lang="en">How it works</span></h2>
+      <p class="sub"><span lang="ru">Скрипт не рисует кистью. Он считает геометрию в памяти и заливает её несколькими крупными операциями, поэтому Photoshop не зависает. Ниже — те же четыре этапа на одном маршруте.</span><span lang="en">The script never paints with a brush. It computes the geometry in memory and fills it in a few large operations, so Photoshop stays responsive. Below are the same four stages on one route.</span></p>
+    </div>
+    <ol class="stages">
+      <li class="stage"><figure><canvas data-scene="points" role="img" aria-label="Опорные точки контура" data-ru-aria-label="Опорные точки контура" data-en-aria-label="Path anchor points" data-i18n="aria-label"></canvas></figure>
+        <h3><span lang="ru">Ваши точки</span><span lang="en">Your points</span></h3>
+        <p><span lang="ru">Скрипт читает опорные точки контура. «Усы» у точек по умолчанию игнорируются, поэтому дрогнувшая рука не оставляет хвостов.</span><span lang="en">The script reads the anchor points of the path. Handles are ignored by default, so a shaky click never leaves stray tails.</span></p></li>
+      <li class="stage"><figure><canvas data-scene="smooth" role="img" aria-label="Сглаженная линия поверх ломаной" data-ru-aria-label="Сглаженная линия поверх ломаной" data-en-aria-label="Smoothed line over the polyline" data-i18n="aria-label"></canvas></figure>
+        <h3><span lang="ru">Сглаживание</span><span lang="en">Smoothing</span></h3>
+        <p><span lang="ru">Плавные повороты скругляются сильнее, резкие на перекрёстках — слабее. Отклонение от вашей точки ограничено настройкой.</span><span lang="en">Gentle bends are rounded more, sharp junction turns less. The deviation from your point is capped by a setting.</span></p></li>
+      <li class="stage"><figure><canvas data-scene="shapes" role="img" aria-label="Линия из прямоугольников и кругов" data-ru-aria-label="Линия из прямоугольников и кругов" data-en-aria-label="Line made of rectangles and circles" data-i18n="aria-label"></canvas></figure>
+        <h3><span lang="ru">Линия из фигур</span><span lang="en">A line of shapes</span></h3>
+        <p><span lang="ru">Каждый отрезок — прямоугольник нужной толщины с небольшим нахлёстом, на стыках — круги. Лишние точки убираются с допуском 0,25 px.</span><span lang="en">Each segment is a rectangle of the right thickness with a slight overlap, joints get circles. Redundant points are dropped within 0.25 px.</span></p></li>
+      <li class="stage"><figure><canvas data-scene="final" role="img" aria-label="Линия и стрелки" data-ru-aria-label="Линия и стрелки" data-en-aria-label="Line and arrows" data-i18n="aria-label"></canvas></figure>
+        <h3><span lang="ru">Стрелки</span><span lang="en">Arrows</span></h3>
+        <p><span lang="ru">Одна в начале, по одной после поворотов и на длинных прямых. Белая подложка чуть шире самой стрелки.</span><span lang="en">One at the start, then after turns and along long straights. A white backing is slightly larger than the arrow.</span></p></li>
+    </ol>
+    <p class="more"><span lang="ru">Подробности и все константы алгоритма — в <a href="https://github.com/T1desLuck/RouteDrawer#как-это-работает">README на GitHub</a>.</span><span lang="en">Details and all the algorithm constants are in the <a href="https://github.com/T1desLuck/RouteDrawer#как-это-работает">README on GitHub</a> (in Russian).</span></p>
+  </div>
+</section>
+
+<section class="sec" id="install">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2><span lang="ru">Установка</span><span lang="en">Installation</span></h2>
+      <p class="sub"><span lang="ru">Установщик сам найдёт Photoshop на компьютере и скопирует в него один файл — RouteDrawer.jsx. Реестр не меняется, удалять потом нечего.</span><span lang="en">The installer finds Photoshop on your computer and copies a single file, RouteDrawer.jsx. Nothing is written to the registry, and there is nothing to uninstall later.</span></p>
+    </div>
+    <ol class="shots">
+      <li class="shot"><figure>
+        <img lang="ru" src="assets/img/installer-welcome-ru.webp" width="780" height="540" loading="lazy" alt="Установщик Route Drawer: страница приветствия">
+        <img lang="en" src="assets/img/installer-welcome-en.webp" width="780" height="540" loading="lazy" alt="Route Drawer installer: welcome page"></figure>
+        <h3><span lang="ru">Запустите установщик</span><span lang="en">Run the installer</span></h3></li>
+      <li class="shot"><figure>
+        <img lang="ru" src="assets/img/installer-select-ru.webp" width="780" height="540" loading="lazy" alt="Установщик Route Drawer: выбор версий Photoshop">
+        <img lang="en" src="assets/img/installer-select-en.webp" width="780" height="540" loading="lazy" alt="Route Drawer installer: choosing Photoshop versions"></figure>
+        <h3><span lang="ru">Отметьте версии Photoshop</span><span lang="en">Tick your Photoshop versions</span></h3></li>
+      <li class="shot"><figure>
+        <img lang="ru" src="assets/img/installer-done-ru.webp" width="780" height="540" loading="lazy" alt="Установщик Route Drawer: готово, инструкция по использованию">
+        <img lang="en" src="assets/img/installer-done-en.webp" width="780" height="540" loading="lazy" alt="Route Drawer installer: done, usage instructions"></figure>
+        <h3><span lang="ru">Перезапустите Photoshop</span><span lang="en">Restart Photoshop</span></h3></li>
+    </ol>
+
+    <div class="dl" id="download">
+      <div>
+        <h3><span lang="ru">Route Drawer 1.0.0 для Windows</span><span lang="en">Route Drawer 1.0.0 for Windows</span></h3>
+        <p class="meta"><span lang="ru">Windows 10 и 11, Photoshop 2019 и новее, 223 КБ. Язык установщика — по языку системы.</span><span lang="en">Windows 10 and 11, Photoshop 2019 and newer, 223 KB. The installer uses your system language.</span></p>
+        <div class="btns">
+          <a class="btn btn-primary btn-lg" href="https://github.com/T1desLuck/RouteDrawer/raw/main/RouteDrawer-Setup.exe"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg><span lang="ru">Скачать установщик</span><span lang="en">Download installer</span></a>
+          <a class="btn btn-ghost btn-lg" href="https://github.com/T1desLuck/RouteDrawer/raw/main/RouteDrawer.jsx"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M9 8l-4 4 4 4M15 8l4 4-4 4"/></svg>RouteDrawer.jsx</a>
+        </div>
+        <p class="small" style="margin-top:20px"><span lang="ru">Установщик просит права администратора: скрипт записывается в папку Photoshop в Program Files. Без установщика: положите RouteDrawer.jsx в папку <code>Presets\Scripts</code> вашей версии Photoshop или запустите через Файл → Сценарии → Обзор…</span><span lang="en">The installer asks for administrator rights because the script is written into the Photoshop folder in Program Files. Without it: put RouteDrawer.jsx into the <code>Presets\Scripts</code> folder of your Photoshop, or run it via File → Scripts → Browse…</span></p>
+      </div>
+      <div>
+        <h4><span lang="ru">Контрольная сумма SHA-256</span><span lang="en">SHA-256 checksum</span></h4>
+        <div class="hash"><code id="sha">81fc8bab5091ff2cf153c149daefad1045d97de12463f7417b768d6ebfcffe49</code>
+          <button class="copy" type="button" data-copy="#sha"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 012-2h9"/></svg><span class="copy-t"><span lang="ru">Копировать</span><span lang="en">Copy</span></span></button></div>
+        <p class="note"><span lang="ru">Установщик пока без цифровой подписи, поэтому Windows может написать «Неизвестный издатель» или показать SmartScreen. Сверьте сумму в PowerShell: <code>Get-FileHash .\RouteDrawer-Setup.exe</code></span><span lang="en">The installer is not code-signed yet, so Windows may say “Unknown publisher” or show SmartScreen. Compare the checksum in PowerShell: <code>Get-FileHash .\RouteDrawer-Setup.exe</code></span></p>
+        <p class="sumline"><span lang="ru">Сумма файла <b>RouteDrawer.jsx</b></span><span lang="en">Checksum of <b>RouteDrawer.jsx</b></span></p><code>206a2d154a569248057e397a4633988a8a1c39fe1cb08ece3d1ecc88b7c0b4d7</code>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head"><h2><span lang="ru">Частые вопросы</span><span lang="en">Questions</span></h2></div>
+    <div class="faq">
+      <details><summary><span lang="ru">Скрипта нет в меню «Сценарии»</span><span lang="en">The script is missing from the Scripts menu</span></summary><div class="ans"><p><span lang="ru">Перезапустите Photoshop: меню читается при запуске. Если пункта всё равно нет, проверьте, что файл лежит в папке <code>Presets\Scripts</code> именно той версии, которую вы запускаете, или откройте его через Файл → Сценарии → Обзор….</span><span lang="en">Restart Photoshop: the menu is read at startup. If it is still missing, make sure the file sits in <code>Presets\Scripts</code> of the exact version you run, or open it via File → Scripts → Browse….</span></p></div></details>
+      <details><summary><span lang="ru">Пишет, что в документе нет контура</span><span lang="en">It says there is no path in the document</span></summary><div class="ans"><p><span lang="ru">Перо должно быть в режиме «Контур», а не «Фигура». Контур виден в палитре «Контуры» (Окно → Контуры) как «Рабочий контур». Если его нет — поставьте точки заново в нужном режиме.</span><span lang="en">The Pen must be in Path mode, not Shape. Your path shows up in the Paths panel (Window → Paths) as “Work Path”. If it isn’t there, place the points again in the right mode.</span></p></div></details>
+      <details><summary><span lang="ru">Стрелки смотрят не в ту сторону</span><span lang="en">The arrows point the wrong way</span></summary><div class="ans"><p><span lang="ru">Направление — это порядок точек: от первой к последней. Отмените отрисовку (<kbd>Ctrl</kbd>+<kbd>Z</kbd>), стройте контур от старта к финишу и запустите скрипт снова.</span><span lang="en">The direction follows the order of the points, first to last. Undo the drawing (<kbd>Ctrl</kbd>+<kbd>Z</kbd>), build the path from start to finish and run the script again.</span></p></div></details>
+      <details><summary><span lang="ru">Линия угловатая или слишком «срезает» повороты</span><span lang="en">The line looks angular, or cuts the corners too much</span></summary><div class="ans"><p><span lang="ru">Угловатая — увеличьте «Сглаживание плавных поворотов». Уходит от ваших точек слишком далеко — уменьшите его и «Скругление резких поворотов».</span><span lang="en">Angular: raise “Smoothing of gentle bends”. Straying too far from your points: lower it and “Rounding of sharp turns”.</span></p></div></details>
+      <details><summary><span lang="ru">Можно ли использовать в коммерческой работе?</span><span lang="en">Can I use it in commercial work?</span></summary><div class="ans"><p><span lang="ru">Да. Пользоваться скриптом можно бесплатно, а всё, что вы нарисовали, принадлежит вам и не требует указания автора. Нельзя продавать скрипт, распространять его под своим именем и менять без разрешения автора — полный текст в <a href="https://github.com/T1desLuck/RouteDrawer/blob/main/LICENSE">лицензии RDL 1.0</a>.</span><span lang="en">Yes. The script is free to use, and whatever you draw with it is yours, with no credit required. You may not sell it, distribute it under your own name or modify it without the author’s permission — see the full <a href="https://github.com/T1desLuck/RouteDrawer/blob/main/LICENSE">RDL 1.0 licence</a> (Russian and English).</span></p></div></details>
+      <details><summary><span lang="ru">Работает ли на Mac?</span><span lang="en">Does it work on a Mac?</span></summary><div class="ans"><p><span lang="ru">Скрипт — обычный .jsx, его можно положить в <code>/Applications/Adobe Photoshop …/Presets/Scripts</code>, но на Mac он не проверялся. Установщик — только для Windows.</span><span lang="en">The script is a plain .jsx and can be placed in <code>/Applications/Adobe Photoshop …/Presets/Scripts</code>, but it has not been tested on a Mac. The installer is Windows-only.</span></p></div></details>
+      <details><summary><span lang="ru">Установщик не нашёл мой Photoshop</span><span lang="en">The installer did not find my Photoshop</span></summary><div class="ans"><p><span lang="ru">Нажмите «Добавить папку…» и укажите папку, где лежит Photoshop.exe, например <code>C:\Program Files\Adobe\Adobe Photoshop 2024</code>.</span><span lang="en">Click “Add folder…” and pick the folder that contains Photoshop.exe, for example <code>C:\Program Files\Adobe\Adobe Photoshop 2024</code>.</span></p></div></details>
+      <details><summary><span lang="ru">Как удалить скрипт</span><span lang="en">How do I remove the script</span></summary><div class="ans"><p><span lang="ru">Удалите файл RouteDrawer.jsx из папки <code>Presets\Scripts</code>. Больше ничего убирать не нужно.</span><span lang="en">Delete RouteDrawer.jsx from the <code>Presets\Scripts</code> folder. Nothing else needs to be removed.</span></p></div></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top"><img src="assets/icon-192.png" width="30" height="30" alt="">Route Drawer</a>
+        <p style="margin:0;max-width:30em"><span lang="ru">Скрипт для Photoshop: красная линия маршрута со стрелками по контуру, поставленному Пером.</span><span lang="en">A Photoshop script that draws a red route line with arrows along a path made with the Pen tool.</span></p>
+      </div>
+      <div>
+        <h4><span lang="ru">Проект</span><span lang="en">Project</span></h4>
+        <ul>
+          <li><a href="https://github.com/T1desLuck/RouteDrawer">GitHub</a></li>
+          <li><a href="https://github.com/T1desLuck/RouteDrawer/blob/main/README.md">README</a></li>
+          <li><a href="https://github.com/T1desLuck/RouteDrawer/blob/main/LICENSE"><span lang="ru">Лицензия RDL 1.0</span><span lang="en">RDL 1.0 licence</span></a></li>
+          <li><a href="https://github.com/T1desLuck/RouteDrawer/raw/main/RouteDrawer.jsx">RouteDrawer.jsx</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4><span lang="ru">Автор</span><span lang="en">Author</span></h4>
+        <ul>
+          <li><a href="mailto:tidesluck@icloud.com">tidesluck@icloud.com</a></li>
+          <li>ИП Барков Никита Сергеевич</li>
+          <li><span lang="ru">Версия</span><span lang="en">Version</span> 1.0.0</li>
+        </ul>
+      </div>
+    </div>
+    <p class="fine"><span lang="ru">© 2026 ИП Барков Никита Сергеевич. Adobe и Photoshop — товарные знаки Adobe Inc.; проект с Adobe Inc. не связан. Карты Яндекса, Google и других сервисов принадлежат их правообладателям. Скрипт лишь рисует линии по заданному вами контуру и не проверяет маршрут на соответствие правилам дорожного движения. Сайт не использует cookie, счётчики и внешние ресурсы.</span><span lang="en">© 2026 ИП Барков Никита Сергеевич. Adobe and Photoshop are trademarks of Adobe Inc.; this project is not affiliated with Adobe Inc. Maps from Yandex, Google and other services belong to their owners. The script only draws lines along the path you provide and does not check a route against traffic rules. This site uses no cookies, analytics or external resources.</span></p>
+  </div>
+</footer>
+
+<script src="assets/geometry.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>
