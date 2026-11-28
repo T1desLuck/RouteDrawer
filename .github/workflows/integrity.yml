@@ -1,0 +1,41 @@
+name: Integrity / Проверка целостности
+
+# Сторож репозитория. Следит, чтобы скрипт, установщик, README и сайт не разошлись:
+#  • SHA-256 в README и на сайте совпадают с реальными файлами;
+#  • внутри установщика лежит именно тот RouteDrawer.jsx, что в репозитории;
+#  • демо на сайте использует ту же геометрию, что и скрипт;
+#  • ссылки и картинки не битые.
+# Раз в неделю дополнительно проверяет «снаружи»: отдаёт ли публичная ссылка нужный установщик
+# и открывается ли сайт. Если что-то сломалось, GitHub пришлёт письмо.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 5 * * 1" # по понедельникам, 05:17 UTC
+
+permissions:
+  contents: read
+
+concurrency:
+  group: integrity-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Verify files, hashes and links
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Verify (offline)
+        if: github.event_name == 'push' || github.event_name == 'pull_request'
+        run: python3 .github/scripts/verify_integrity.py
+
+      - name: Verify (offline + public links and site)
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: python3 .github/scripts/verify_integrity.py --online
