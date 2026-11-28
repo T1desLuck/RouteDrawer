@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "💬 Вопрос или обсуждение / Question or discussion"
+    url: https://github.com/T1desLuck/RouteDrawer/discussions
+    about: "Если нужна помощь с использованием, а не сообщение об ошибке. Ask usage questions here."
+  - name: "📖 Инструкция и частые вопросы / Guide and FAQ"
+    url: https://t1desluck.github.io/RouteDrawer/
+    about: "Установка, настройки и ответы на частые вопросы. Install guide, settings and FAQ."
+  - name: "🔒 Сообщить об уязвимости / Report a vulnerability"
+    url: https://github.com/T1desLuck/RouteDrawer/security/advisories/new
+    about: "Приватно, без публикации в задачах. Private report, not a public issue."
